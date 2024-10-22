@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-application-deployment
+  labels:
+    app: go-application-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: go-application-deployment
+  template:
+    metadata:
+      name: go-application-deployment
+      labels:
+        app: go-application-deployment
+    spec:
+      containers:
+        - name: go-application-container
+          image: go-application:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+      restartPolicy: Always
+      
